@@ -1,0 +1,15 @@
+name: Feature request
+description: Propose a workflow improvement
+body:
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Current workflow
+      description: What are you designing, and where does the visual-to-code loop become slow or ambiguous?
+    validations: { required: true }
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: Describe the result rather than only a proposed control or implementation.
+    validations: { required: true }

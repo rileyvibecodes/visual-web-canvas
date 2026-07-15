@@ -1,0 +1,164 @@
+{
+  "name": "visual-web-canvas",
+  "displayName": "Visual Web Canvas",
+  "description": "Click and edit websites inside VS Code, then send exact visual context to Claude Code.",
+  "version": "1.0.0",
+  "publisher": "rileyvibecodes",
+  "license": "MIT",
+  "homepage": "https://github.com/rileyvibecodes/visual-web-canvas#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rileyvibecodes/visual-web-canvas.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rileyvibecodes/visual-web-canvas/issues"
+  },
+  "icon": "assets/icon.png",
+  "galleryBanner": {
+    "color": "#0b1020",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "extensionKind": [
+    "workspace"
+  ],
+  "categories": [
+    "Visualization",
+    "Other"
+  ],
+  "keywords": [
+    "claude",
+    "claude code",
+    "visual editor",
+    "web design",
+    "react",
+    "nextjs",
+    "vite",
+    "html"
+  ],
+  "activationEvents": [
+    "onCustomEditor:visualWebCanvas.editor",
+    "onCommand:visualWebCanvas.open",
+    "onCommand:visualWebCanvas.connectDevServer",
+    "onCommand:visualWebCanvas.clearSelection",
+    "onCommand:visualWebCanvas.commentInClaude",
+    "onCommand:visualWebCanvas.installClaudeBridge",
+    "onCommand:visualWebCanvas.doctor"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "visualWebCanvas.open",
+        "title": "Visual Web Canvas: Open HTML Canvas",
+        "icon": "$(open-preview)"
+      },
+      {
+        "command": "visualWebCanvas.connectDevServer",
+        "title": "Visual Web Canvas: Connect Dev Server",
+        "icon": "$(globe)"
+      },
+      {
+        "command": "visualWebCanvas.clearSelection",
+        "title": "Visual Web Canvas: Clear Selection"
+      },
+      {
+        "command": "visualWebCanvas.commentInClaude",
+        "title": "Visual Web Canvas: Comment in Existing Claude Chat"
+      },
+      {
+        "command": "visualWebCanvas.installClaudeBridge",
+        "title": "Visual Web Canvas: Install/Repair Claude Bridge"
+      },
+      {
+        "command": "visualWebCanvas.doctor",
+        "title": "Visual Web Canvas: Run Diagnostics"
+      }
+    ],
+    "customEditors": [
+      {
+        "viewType": "visualWebCanvas.editor",
+        "displayName": "Visual Web Canvas",
+        "selector": [
+          {
+            "filenamePattern": "**/*.html"
+          }
+        ],
+        "priority": "option"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "visualWebCanvas.open",
+          "when": "resourceExtname == .html",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "visualWebCanvas.open",
+          "when": "resourceExtname == .html",
+          "group": "navigation"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "visualWebCanvas.connectDevServer"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Visual Web Canvas",
+      "properties": {
+        "visualWebCanvas.selectionStaleSeconds": {
+          "type": "number",
+          "default": 300,
+          "minimum": 15,
+          "description": "How long a canvas selection remains eligible for Claude context after the canvas heartbeat stops."
+        },
+        "visualWebCanvas.defaultDevServerUrl": {
+          "type": "string",
+          "default": "http://localhost:3000",
+          "description": "Default URL offered by Connect Dev Server. Vite commonly uses http://localhost:5173."
+        },
+        "visualWebCanvas.enableReactSourceEditing": {
+          "type": "boolean",
+          "default": true,
+          "description": "Launch the MIT-licensed React Rewrite bridge for staged React/Tailwind source editing in live canvases."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node esbuild.mjs",
+    "build:watch": "node esbuild.mjs --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "check": "npm run typecheck && npm run test && npm run build",
+    "package": "npm run check && vsce package",
+    "package:npm": "npm pack --dry-run",
+    "prepublishOnly": "npm run check"
+  },
+  "bin": {
+    "visual-web-canvas": "cli/visual-web-canvas.mjs"
+  },
+  "dependencies": {
+    "react-rewrite-cli": "^0.1.1"
+  },
+  "devDependencies": {
+    "@types/http-proxy": "^1.17.16",
+    "@types/node": "^22.15.0",
+    "@types/vscode": "^1.93.0",
+    "@vscode/vsce": "^3.6.0",
+    "esbuild": "^0.25.5",
+    "html2canvas": "^1.4.1",
+    "http-proxy": "^1.18.1",
+    "parse5": "^7.3.0",
+    "react-grab": "^0.1.48",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  }
+}

@@ -1,0 +1,2 @@
+function Metric({ value, label }) { return <div className="metric"><strong>{value}</strong><span>{label}</span></div>; }
+export default function Page() { return <main><p className="eyebrow">Next.js live canvas</p><h1>Design in the page. Ship in the source.</h1><p className="lede">Select this hero, leave a visual comment, and let Claude see exactly which component you mean.</p><button>Start the workflow</button><section><Metric value="250 ms" label="selection context"/><Metric value="390 px" label="mobile canvas"/><Metric value="0" label="cloud relays"/></section></main>; }

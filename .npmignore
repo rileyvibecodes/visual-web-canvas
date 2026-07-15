@@ -1,0 +1,10 @@
+.github/
+src/
+test/
+examples/
+docs/
+*.vsix
+*.tgz
+dist/**/*.map
+assets/*-source.svg
+node_modules/

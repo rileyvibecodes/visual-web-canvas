@@ -1,0 +1,26 @@
+name: Bug report
+description: Report a reproducible Visual Web Canvas problem
+body:
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Canvas mode
+      options: [Static HTML, React source-editable, Live inspect-only, Cursor beta]
+    validations: { required: true }
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: Extension, VS Code/Cursor, Node, framework, and operating system
+    validations: { required: true }
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction
+      description: Minimal steps and expected/observed behavior. Remove private page content.
+    validations: { required: true }
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics
+      description: Paste the output from Visual Web Canvas: Run Diagnostics.

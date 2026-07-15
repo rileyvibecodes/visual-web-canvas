@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Northstar — Visual Web Canvas demo</title>
+  <style>
+    :root { color-scheme: dark; --ink:#f8fafc; --muted:#a8b2c8; --panel:#121a30; --line:#293653; --accent:#67e8f9; --violet:#8b5cf6; }
+    * { box-sizing: border-box; }
+    body { margin:0; min-height:100vh; color:var(--ink); background:radial-gradient(circle at 75% 5%,#2e1f5d 0,transparent 32%),#080b16; font:16px/1.6 Inter,ui-sans-serif,system-ui,sans-serif; }
+    .shell { width:min(1160px,calc(100% - 40px)); margin:auto; }
+    nav { display:flex; align-items:center; justify-content:space-between; height:76px; }
+    .brand { font-weight:800; letter-spacing:-.03em; }.brand span { color:var(--accent); }
+    .nav-links { display:flex; align-items:center; gap:24px; color:var(--muted); font-size:14px; }
+    a { color:inherit; text-decoration:none; }.button { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:0 22px; border-radius:12px; background:linear-gradient(135deg,var(--accent),#60a5fa 45%,var(--violet)); color:#07101d; font-weight:800; box-shadow:0 16px 45px rgba(96,165,250,.23); }
+    .hero { display:grid; grid-template-columns:1.08fr .92fr; align-items:center; gap:72px; min-height:650px; padding:72px 0 96px; }
+    .eyebrow { margin:0 0 18px; color:var(--accent); font-size:13px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+    h1 { max-width:720px; margin:0; font-size:clamp(48px,6.1vw,82px); line-height:.98; letter-spacing:-.055em; }
+    .lede { max-width:630px; margin:28px 0 0; color:var(--muted); font-size:20px; }
+    .actions { display:flex; align-items:center; gap:18px; margin-top:36px; }.note { color:var(--muted); font-size:13px; }
+    .proof { display:flex; gap:28px; margin-top:42px; color:var(--muted); font-size:13px; }.proof strong { display:block; color:var(--ink); font-size:22px; }
+    .visual { position:relative; min-height:500px; }.card { position:absolute; border:1px solid var(--line); border-radius:24px; background:linear-gradient(145deg,rgba(24,34,61,.96),rgba(12,17,32,.98)); box-shadow:0 35px 90px rgba(0,0,0,.42); }
+    .main-card { inset:20px 0 40px 34px; padding:26px; transform:rotate(1.5deg); }.window-bar { display:flex; gap:7px; padding-bottom:20px; border-bottom:1px solid var(--line); }.dot { width:9px; height:9px; border-radius:50%; background:#3a4663; }
+    .mock-title { width:72%; height:24px; margin:40px 0 18px; border-radius:7px; background:linear-gradient(90deg,#67e8f9,#8b5cf6); }.line { height:11px; margin:10px 0; border-radius:6px; background:#33405d; }.line.short { width:68%; }.mock-button { width:140px; height:48px; margin-top:34px; border-radius:12px; background:var(--accent); }
+    .float-card { right:-22px; bottom:18px; width:210px; padding:20px; transform:rotate(-4deg); }.float-card b { font-size:28px; }.float-card p { margin:4px 0 0; color:var(--muted); font-size:12px; }
+    .logos { padding:30px 0 70px; border-top:1px solid var(--line); color:#71809e; text-align:center; }.logo-row { display:flex; justify-content:center; flex-wrap:wrap; gap:50px; margin-top:22px; font-weight:800; letter-spacing:.06em; }
+    @media (max-width: 767px) { .nav-links a:not(.button) { display:none; }.hero { grid-template-columns:1fr; gap:30px; min-height:auto; padding:55px 0 80px; }.visual { min-height:390px; }.main-card { left:0; }.proof { gap:18px; }.actions { align-items:flex-start; flex-direction:column; } }
+  </style>
+</head>
+<body>
+  <nav class="shell"><a class="brand" href="#">North<span>star</span></a><div class="nav-links"><a href="#proof">Results</a><a href="#method">Method</a><a class="button" href="#start">Start building</a></div></nav>
+  <main>
+    <section class="hero shell">
+      <div>
+        <p class="eyebrow">Built for teams who ship</p>
+        <h1>Turn strong ideas into pages people act on.</h1>
+        <p class="lede">A focused conversion system for founders who want sharper positioning, faster iteration, and a website that earns attention.</p>
+        <div class="actions"><a class="button" href="#start">Build your first page →</a><span class="note">Free strategy session · No commitment</span></div>
+        <div class="proof" id="proof"><div><strong>2.4×</strong>faster iteration</div><div><strong>38%</strong>average lift</div><div><strong>14 days</strong>to launch</div></div>
+      </div>
+      <div class="visual" aria-label="Landing page performance preview">
+        <div class="card main-card"><div class="window-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div><div class="mock-title"></div><div class="line"></div><div class="line short"></div><div class="mock-button"></div></div>
+        <div class="card float-card"><b>+38%</b><p>conversion rate after the latest message and layout iteration</p></div>
+      </div>
+    </section>
+    <section class="logos" id="method"><div class="shell">Trusted by teams building the next category<div class="logo-row"><span>ASTER</span><span>BRIGHTLINE</span><span>PARALLEL</span><span>FIELDNOTE</span></div></div></section>
+  </main>
+</body>
+</html>

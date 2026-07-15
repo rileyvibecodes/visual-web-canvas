@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="640" gradientUnits="userSpaceOnUse"><stop stop-color="#111a33"/><stop offset="1" stop-color="#070a13"/></linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(1010 315) rotate(90) scale(330 450)" gradientUnits="userSpaceOnUse"><stop stop-color="#7c3aed" stop-opacity=".42"/><stop offset="1" stop-color="#7c3aed" stop-opacity="0"/></radialGradient>
+    <linearGradient id="accent" x1="720" y1="160" x2="1160" y2="520" gradientUnits="userSpaceOnUse"><stop stop-color="#38bdf8"/><stop offset=".55" stop-color="#8b5cf6"/><stop offset="1" stop-color="#d946ef"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#000" flood-opacity=".38"/></filter>
+  </defs>
+  <rect width="1280" height="640" fill="url(#bg)"/><rect width="1280" height="640" fill="url(#glow)"/>
+  <g transform="translate(82 108)">
+    <rect width="76" height="76" rx="18" fill="#17213b" stroke="#34405f" stroke-width="3"/>
+    <rect x="14" y="15" width="48" height="39" rx="5" fill="#0b1020" stroke="url(#accent)" stroke-width="4"/>
+    <path d="m44 38 24 12-10 4 7 15-7 3-7-15-9 7z" fill="#fff" stroke="#0b1020" stroke-width="2"/>
+  </g>
+  <text x="82" y="262" fill="#fff" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="68" font-weight="760" letter-spacing="-2">Visual Web Canvas</text>
+  <text x="84" y="326" fill="#aab4ce" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="29">Click and edit your website inside VS Code.</text>
+  <text x="84" y="370" fill="#aab4ce" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="29">Send exact visual context to Claude Code.</text>
+  <g transform="translate(82 430)" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="18" font-weight="650">
+    <rect width="136" height="42" rx="21" fill="#17213b" stroke="#34405f"/><text x="26" y="27" fill="#dbeafe">HTML</text>
+    <rect x="150" width="136" height="42" rx="21" fill="#17213b" stroke="#34405f"/><text x="177" y="27" fill="#dbeafe">React</text>
+    <rect x="300" width="136" height="42" rx="21" fill="#17213b" stroke="#34405f"/><text x="329" y="27" fill="#dbeafe">Next.js</text>
+    <rect x="450" width="136" height="42" rx="21" fill="#17213b" stroke="#34405f"/><text x="490" y="27" fill="#dbeafe">Vite</text>
+  </g>
+  <g transform="translate(744 95)" filter="url(#shadow)">
+    <rect width="448" height="450" rx="28" fill="#10182c" stroke="#34405f" stroke-width="4"/>
+    <path d="M2 66h444" stroke="#34405f" stroke-width="4"/>
+    <circle cx="35" cy="33" r="8" fill="#fb7185"/><circle cx="63" cy="33" r="8" fill="#fbbf24"/><circle cx="91" cy="33" r="8" fill="#34d399"/>
+    <rect x="42" y="106" width="364" height="95" rx="12" fill="#0b1020" stroke="url(#accent)" stroke-width="7"/>
+    <rect x="42" y="230" width="228" height="18" rx="9" fill="#53617f"/><rect x="42" y="266" width="320" height="13" rx="7" fill="#28344f"/><rect x="42" y="294" width="288" height="13" rx="7" fill="#28344f"/>
+    <rect x="42" y="346" width="144" height="48" rx="11" fill="url(#accent)"/>
+    <path d="m339 169 91 44-38 15 28 61-27 13-28-61-35 26z" fill="#fff" stroke="#0b1020" stroke-linejoin="round" stroke-width="7"/>
+  </g>
+</svg>

@@ -2,7 +2,9 @@
 
 ![Visual Web Canvas](assets/social-preview.png)
 
-Click and edit your website inside VS Code. Select an element, leave a visual comment, and the exact DOM, source location, React component stack, computed styles, viewport, and cropped screenshot are supplied to your existing Claude Code conversation.
+**Stop describing UI changes to Claude Code. Point at them.**
+
+Visual Web Canvas puts a click-to-edit canvas of your website inside VS Code. Select any element, edit copy and styles visually, or leave a comment. Your existing Claude Code conversation receives the exact DOM, source location, React component stack, computed styles, viewport, and a cropped screenshot of what you selected.
 
 No second chat box. No screenshot-and-guess loop. No cloud account or telemetry.
 
@@ -10,13 +12,9 @@ No second chat box. No screenshot-and-guess loop. No cloud account or telemetry.
 
 ## Install
 
-### Pilot build
-
 Download [`visual-web-canvas-1.0.0.vsix`](https://github.com/rileyvibecodes/visual-web-canvas/releases/download/pilot-1/visual-web-canvas-1.0.0.vsix), run **Extensions: Install from VSIX…** in VS Code, then run **Visual Web Canvas: Install/Repair Claude Bridge** from the Command Palette.
 
-### Final release
-
-After the five-designer pilot gate, the Marketplace extension and bridge will install together with:
+One-command install via npm and the VS Code Marketplace listing are landing shortly:
 
 ```sh
 npx --yes visual-web-canvas@latest install
@@ -28,6 +26,21 @@ Requirements:
 - Node.js 20+ for the installer and live React source editor.
 - Claude Code for VS Code for seamless chat context.
 - Cursor 3.6+ is available as a clearly labeled MCP-based beta.
+
+## The Claude workflow
+
+1. Select an element in either canvas mode.
+2. Click **Comment → Claude** and write the visual change you want.
+3. Visual Web Canvas captures a cropped screenshot and focuses the existing Claude Code chat.
+4. Type naturally. Even `do this` is enough: on submit, the `UserPromptSubmit` hook adds the selected element and comment as private context.
+5. Claude edits the real source. The canvas refreshes through VS Code or HMR.
+
+The bridge is additive: it preserves every existing Claude hook. Install, repair, diagnose, and remove it with:
+
+```sh
+visual-web-canvas doctor
+visual-web-canvas uninstall --keep-extension
+```
 
 ## Two canvas modes
 
@@ -66,26 +79,19 @@ The extension launches the MIT-licensed React Rewrite bridge behind a second tok
 
 Only `localhost`, `127.0.0.1`, and `::1` dev servers are accepted.
 
-## The Claude workflow
-
-1. Select an element in either canvas mode.
-2. Click **Comment → Claude** and write the visual change you want.
-3. Visual Web Canvas captures a cropped screenshot and focuses the existing Claude Code chat.
-4. Type naturally— even `do this` is enough. On submit, the `UserPromptSubmit` hook adds the selected element and comment as private context.
-5. Claude edits the real source. The canvas refreshes through VS Code or HMR.
-
-The bridge is additive: it preserves every existing Claude hook. Install, repair, diagnose, and remove it with:
-
-```sh
-visual-web-canvas doctor
-visual-web-canvas uninstall --keep-extension
-```
-
 ## Responsive canvas
 
 Desktop means 1440 CSS pixels even when the editor pane is narrower. The canvas scales visually to fit while keeping the real iframe viewport fixed, so media queries do not accidentally follow the size of the VS Code window.
 
 Presets: responsive, 1440 desktop, 1024 laptop, 768 tablet, and 390 mobile.
+
+## Try it in 60 seconds
+
+The [`examples/`](examples/) folder ships three ready-to-open playgrounds:
+
+- `examples/static-landing-page.html`: open it, run **Visual Web Canvas: Open HTML Canvas**, and start clicking.
+- `examples/vite-react`: `npm install && npm run dev`, then **Connect Dev Server**.
+- `examples/next-app`: `npm install && npm run dev`, then **Connect Dev Server**.
 
 ## Cursor beta
 

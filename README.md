@@ -10,11 +10,17 @@ No second chat box. No screenshot-and-guess loop. No cloud account or telemetry.
 
 ## Install
 
+### Pilot build
+
+Download [`visual-web-canvas-1.0.0.vsix`](https://github.com/rileyvibecodes/visual-web-canvas/releases/download/pilot-1/visual-web-canvas-1.0.0.vsix), run **Extensions: Install from VSIX…** in VS Code, then run **Visual Web Canvas: Install/Repair Claude Bridge** from the Command Palette.
+
+### Final release
+
+After the five-designer pilot gate, the Marketplace extension and bridge will install together with:
+
 ```sh
 npx --yes visual-web-canvas@latest install
 ```
-
-Until the first Marketplace release, install the VSIX from [GitHub Releases](https://github.com/rileyvibecodes/visual-web-canvas/releases), then run **Visual Web Canvas: Install/Repair Claude Bridge** from the Command Palette.
 
 Requirements:
 

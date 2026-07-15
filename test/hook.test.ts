@@ -42,7 +42,7 @@ describe('Claude UserPromptSubmit bridge', () => {
 
     const output = execFileSync(process.execPath, [hookPath], {
       input: JSON.stringify({ cwd: workspace, prompt: 'Make this smaller' }),
-      env: { ...process.env, HOME: home },
+      env: homeEnvironment(home),
       encoding: 'utf8',
     });
     const parsed = JSON.parse(output);
@@ -66,7 +66,7 @@ describe('Claude UserPromptSubmit bridge', () => {
     }));
     const output = execFileSync(process.execPath, [hookPath], {
       input: JSON.stringify({ cwd: home }),
-      env: { ...process.env, HOME: home },
+      env: homeEnvironment(home),
       encoding: 'utf8',
     });
     expect(output).toBe('');
@@ -102,7 +102,7 @@ describe('Claude UserPromptSubmit bridge', () => {
     }));
     const output = execFileSync(process.execPath, [hookPath], {
       input: JSON.stringify({ cwd: workspace, prompt: 'do this' }),
-      env: { ...process.env, HOME: home },
+      env: homeEnvironment(home),
       encoding: 'utf8',
     });
     const context = JSON.parse(output).hookSpecificOutput.additionalContext;
@@ -112,3 +112,7 @@ describe('Claude UserPromptSubmit bridge', () => {
     expect(context).toContain('comment.png');
   });
 });
+
+function homeEnvironment(home: string): NodeJS.ProcessEnv {
+  return { ...process.env, HOME: home, USERPROFILE: home };
+}

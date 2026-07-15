@@ -35,7 +35,7 @@ jobs:
       - run: npm ci
       - run: npm run package
       - run: npm run package:npm
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: visual-web-canvas-vsix
           path: '*.vsix'

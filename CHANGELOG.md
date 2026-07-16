@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.0 (Unreleased)
+## 1.0.0 (2026-07-15)
 
 - Public MIT release under the Visual Web Canvas name.
 - Exact static HTML canvas with source-backed text, style, responsive, duplicate, delete, compare, fold, and history controls.

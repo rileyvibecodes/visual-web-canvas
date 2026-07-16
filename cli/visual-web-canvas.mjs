@@ -10,7 +10,9 @@ import { fileURLToPath } from 'node:url';
 const packageRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const packageVersion = JSON.parse(await fs.readFile(path.join(packageRoot, 'package.json'), 'utf8')).version;
 const extensionId = 'rileyvibecodes.visual-web-canvas';
+const releaseVsixUrl = `https://github.com/rileyvibecodes/visual-web-canvas/releases/download/v${packageVersion}/visual-web-canvas-${packageVersion}.vsix`;
 const command = process.argv[2] || 'help';
+let vsixDownload;
 
 if (command === 'install') await install(process.argv.slice(3));
 else if (command === 'doctor') await doctor();
@@ -22,22 +24,49 @@ async function install(args) {
   const cursor = args.includes('--cursor') || args.includes('--all');
   const vscode = !args.includes('--cursor') || args.includes('--all');
   const results = [];
-  if (vscode) results.push(installEditor('code', 'VS Code'));
-  if (cursor) results.push(installEditor('cursor', 'Cursor'));
+  if (vscode) results.push(await installEditor('code', 'VS Code'));
+  if (cursor) results.push(await installEditor('cursor', 'Cursor'));
   const bridge = await installClaudeBridge();
   if (cursor) await installCursorMcp();
+  await removeDownloadedVsix();
   for (const result of results) process.stdout.write(`${result}\n`);
   process.stdout.write(`Claude bridge installed: ${bridge}\n`);
   if (cursor) process.stdout.write('Cursor MCP installed (beta). Restart Cursor before testing it.\n');
   process.stdout.write('Run visual-web-canvas doctor to verify the complete setup.\n');
 }
 
-function installEditor(binary, label) {
+async function installEditor(binary, label) {
   const check = spawnSync(binary, ['--version'], { encoding: 'utf8' });
   if (check.error) return `${label}: CLI not found; install from the Marketplace or GitHub VSIX.`;
-  const install = spawnSync(binary, ['--install-extension', extensionId, '--force'], { encoding: 'utf8' });
-  if (install.status !== 0) return `${label}: Marketplace install unavailable (${(install.stderr || install.stdout).trim()}). Use the GitHub Release VSIX.`;
-  return `${label}: extension installed.`;
+  const marketplace = spawnSync(binary, ['--install-extension', extensionId, '--force'], { encoding: 'utf8' });
+  if (marketplace.status === 0) return `${label}: extension installed.`;
+  let vsix;
+  try {
+    vsix = await downloadReleaseVsix();
+  } catch (error) {
+    return `${label}: Marketplace install unavailable and the release download failed (${error instanceof Error ? error.message : String(error)}). Download the VSIX from ${releaseVsixUrl} and run ${binary} --install-extension <file>.`;
+  }
+  const file = spawnSync(binary, ['--install-extension', vsix, '--force'], { encoding: 'utf8' });
+  if (file.status !== 0) return `${label}: VSIX install failed (${(file.stderr || file.stdout).trim()}).`;
+  return `${label}: extension ${packageVersion} installed from the GitHub release.`;
+}
+
+function downloadReleaseVsix() {
+  vsixDownload ||= (async () => {
+    const response = await fetch(releaseVsixUrl, { redirect: 'follow' });
+    if (!response.ok) throw new Error(`HTTP ${response.status} for ${releaseVsixUrl}`);
+    const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'visual-web-canvas-'));
+    const target = path.join(directory, `visual-web-canvas-${packageVersion}.vsix`);
+    await fs.writeFile(target, Buffer.from(await response.arrayBuffer()), { mode: 0o600 });
+    return target;
+  })();
+  return vsixDownload;
+}
+
+async function removeDownloadedVsix() {
+  if (!vsixDownload) return;
+  const target = await vsixDownload.catch(() => undefined);
+  if (target) await fs.rm(path.dirname(target), { recursive: true, force: true });
 }
 
 async function installClaudeBridge() {

@@ -2,7 +2,7 @@
   "name": "visual-web-canvas",
   "displayName": "Visual Web Canvas",
   "description": "Click and edit websites inside VS Code, then send exact visual context to Claude Code.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "rileyvibecodes",
   "license": "MIT",
   "homepage": "https://github.com/rileyvibecodes/visual-web-canvas#readme",

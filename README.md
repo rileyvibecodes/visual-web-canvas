@@ -12,13 +12,13 @@ No second chat box. No screenshot-and-guess loop. No cloud account or telemetry.
 
 ## Install
 
-Download [`visual-web-canvas-1.0.0.vsix`](https://github.com/rileyvibecodes/visual-web-canvas/releases/download/pilot-1/visual-web-canvas-1.0.0.vsix), run **Extensions: Install from VSIX…** in VS Code, then run **Visual Web Canvas: Install/Repair Claude Bridge** from the Command Palette.
-
-One-command install via npm and the VS Code Marketplace listing are landing shortly:
-
 ```sh
 npx --yes visual-web-canvas@latest install
 ```
+
+This installs the extension (from the Marketplace when available, otherwise from the pinned GitHub release) and wires up the Claude Code bridge.
+
+Manual alternative: download the VSIX from the [latest release](https://github.com/rileyvibecodes/visual-web-canvas/releases/latest), run **Extensions: Install from VSIX…** in VS Code, then run **Visual Web Canvas: Install/Repair Claude Bridge** from the Command Palette.
 
 Requirements:
 

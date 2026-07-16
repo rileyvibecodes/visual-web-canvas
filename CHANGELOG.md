@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.1 (2026-07-16)
+
+- Installer falls back to the version-pinned GitHub release VSIX when the Marketplace listing is unavailable.
+- README install instructions lead with the one-command npx install and link the latest release instead of the retired pilot build.
+
 ## 1.0.0 (2026-07-15)
 
 - Public MIT release under the Visual Web Canvas name.
